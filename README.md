@@ -104,7 +104,7 @@ Le projet utilise la bibliothèque Pillow pour la gestion des images. Vous devez
 bash
 pip install Pillow
 
-![Capture d'écran]asserts/Screenshot1.png
+![Explorateur de Fichier]asserts/Screenshot1.png
 
 ### Étape 3 : Préparer les icônes
 
@@ -118,7 +118,7 @@ Le projet utilise plusieurs icônes pour représenter les dossiers et fichiers. 
 - favorite_icon.png
 - tag_icon.png
 
-![Capture d'écran]asserts/Screenshot2.png
+![Explorateur de Fichier]asserts/Screenshot2.png
 
 ### Étape 4 : Exécuter le script
 
@@ -127,7 +127,7 @@ Une fois que vous avez installé les dépendances et préparé les icônes, vous
 bash
 python explorateur.py
 
-![Capture d'écran]assets/Screenshot3.png
+![Explorateur de Fichier]assets/Screenshot3.png
 
 ### Étape 5 : Utilisation de l'application
 
@@ -138,10 +138,10 @@ Une fois l'application lancée, vous verrez une interface graphique avec plusieu
 - *Recherche et filtrage* : Recherchez des fichiers et filtrez par type.
 - *Favoris et fichiers récents* : Accédez rapidement à vos fichiers favoris et récents.
 
-![Capture d'écran]assert/Screenshot4.png
+![Explorateur de Fichier]assert/Screenshot4.png
 
 ### Étape 6 : Gestion des fichiers
 
 Vous pouvez ouvrir, renommer, supprimer des fichiers et dossiers, et les ajouter à vos favoris en utilisant le menu contextuel (clic droit sur un élément).
 
-![Capture d'écran]asserts/Screenshot5.png
+![Explorateur de Fichier]asserts/Screenshot5.png
