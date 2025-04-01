@@ -1,6 +1,6 @@
 # Explorateur de Fichiers en Python avec Tkinter
 
-## *Membres du groupe*
+## Membres du groupe
 - ADJABA Ayodélé
 - AGELE Delore
 - DAFIA Jonas
@@ -19,44 +19,45 @@ Nous avons développé une application d'explorateur de fichiers en Python, util
 - *Filtrage* : Filtrez les fichiers par type (images, texte, PDF, vidéos).
 - *Création de dossiers* : Créez de nouveaux dossiers directement depuis l'interface.
 - *Gestion des tags* : Ajoutez et gérez des tags pour organiser vos fichiers.
-- *Contexte* : Menu contextuel pour des actions supplémentaires sur les fichiers (ouvrir, renommer, supprimer, ajouter aux favoris).
+- *Menu contextuel* : Accédez à des actions supplémentaires sur les fichiers (ouvrir, renommer, supprimer, ajouter aux favoris).
 
 ## Prérequis
 - Python 3.x
 - Tkinter (généralement inclus avec Python)
 - Pillow (pour la gestion des icônes)
 
-### Documentation des Problèmes et Solutions
+## Documentation des Problèmes et Solutions
 
 #### 1. Problème : Chargement des icônes
 Description : Les icônes pour les dossiers et fichiers n'étaient pas chargées correctement, entraînant des erreurs d'affichage.
 
-Solution : Vérifiez que les fichiers d'icônes sont présents dans le même répertoire que le script Python et utilisez la bibliothèque PIL (Pillow) pour redimensionner les icônes avant de les afficher.
+Solution : Nous avons vérifié que les fichiers d'icônes sont présents dans le même répertoire que le script Python et nous avons utilisé la bibliothèque PIL (Pillow) pour redimensionner les icônes avant de les afficher. 
 
 #### 2. Problème : Permissions d'accès aux répertoires
 Description : Des erreurs de permission se produisaient lors de l'accès à certains répertoires.
 
-Solution : Utilisez un bloc try-except pour gérer les exceptions PermissionError, affichant un message d'erreur convivial à l'utilisateur.
+Solution : Nous avons essayé d'utiliser un bloc try-except pour gérer les exceptions PermissionError, affichant ainsi un message d'erreur convivial à l'utilisateur.
 
 #### 3. Problème : Filtrage des fichiers
 Description : Le filtrage des fichiers par type ne fonctionnait pas correctement.
 
-Solution : Créez un dictionnaire pour mapper les types de fichiers à leurs extensions respectives.
+Solution : Nous avons créé un dictionnaire pour mapper les types de fichiers à leurs extensions respectives.
 
 #### 4. Problème : Ouverture de fichiers
 Description : L'ouverture de fichiers avec os.startfile() ne fonctionnait pas sur certains systèmes d'exploitation.
 
-Solution : Utilisez une approche conditionnelle pour ouvrir des fichiers en fonction du système d'exploitation.
+Solution : Nous avons essayé d'utiliser une approche conditionnelle pour ouvrir des fichiers en fonction du système d'exploitation.
 
 #### 5. Problème : Suppression de dossiers non vides
 Description : La tentative de suppression de dossiers non vides entraînait une erreur.
 
-Solution : Utilisez shutil.rmtree() pour supprimer des dossiers non vides.
+Solution : Nous avons utilisé shutil.rmtree() pour supprimer des dossiers non vides.
 
 #### 6. Problème : Renommage de fichiers
 Description : Le renommage de fichiers échouait parfois en raison de conflits de noms.
 
-Solution : Ajoutez une vérification pour voir si le nouveau nom existe déjà avant de renommer
+Solution : Nous avons ajouté une vérification pour voir si le nouveau nom existe déjà avant de renommer.
+
 
 #### 7. Problème : Choix des couleurs
 Description : Lors de la modification de l'interface utilisateur pour inclure des couleurs, il était nécessaire de choisir des couleurs qui soient à la fois esthétiques et fonctionnelles, tout en garantissant une bonne lisibilité.
