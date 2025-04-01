@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox, filedialog, simpledialog
 import time
 from PIL import Image, ImageTk
+import threading
 
 class FileManager:
     def __init__(self, root):
@@ -44,26 +45,26 @@ class FileManager:
         main_content.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
 
         # Barre d'outils
-        toolbar = tk.Frame(main_content, bg="#ecf0f1")
+        toolbar = tk.Frame(main_content, bg="#1a2a3a")
         toolbar.pack(fill=tk.X, padx=5, pady=5)
 
-        tk.Button(toolbar, text="Précédent", command=self.go_back, bg="#bdc3c7", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
-        tk.Button(toolbar, text="Actualiser", command=self.refresh_list, bg="#bdc3c7", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
-        tk.Button(toolbar, text="Créer Dossier", command=self.create_folder, bg="#bdc3c7", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
-        tk.Button(toolbar, text="Favoris", command=self.show_favorites, bg="#bdc3c7", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
+        tk.Button(toolbar, text="Précédent", command=self.go_back, bg="#1a2a3a", fg="white", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
+        tk.Button(toolbar, text="Actualiser", command=self.refresh_list, bg="#1a2a3a", fg="white", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
+        tk.Button(toolbar, text="Créer Dossier", command=self.create_folder, bg="#1a2a3a", fg="white", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
+        tk.Button(toolbar, text="Favoris", command=self.show_favorites, bg="#1a2a3a", fg="white", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
 
         # Barre de recherche et filtrage
-        search_frame = tk.Frame(main_content, bg="#ecf0f1")
+        search_frame = tk.Frame(main_content, bg="#1a2a3a")
         search_frame.pack(fill=tk.X, padx=5, pady=5)
 
-        tk.Label(search_frame, text="Rechercher :", bg="#ecf0f1").pack(side=tk.LEFT, padx=5)
+        tk.Label(search_frame, text="Rechercher :", bg="#1a2a3a", fg="white").pack(side=tk.LEFT, padx=5)
         self.search_var = tk.StringVar()
         search_entry = tk.Entry(search_frame, textvariable=self.search_var)
         search_entry.pack(side=tk.LEFT, padx=5)
-        tk.Button(search_frame, text="Chercher", command=self.refresh_list, bg="#bdc3c7", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
+        tk.Button(search_frame, text="Chercher", command=self.refresh_list, bg="#1a2a3a", fg="white", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
 
         # Filtrage des fichiers par type
-        tk.Label(search_frame, text="Filtrer :", bg="#ecf0f1").pack(side=tk.LEFT, padx=5)
+        tk.Label(search_frame, text="Filtrer :", bg="#1a2a3a", fg="white").pack(side=tk.LEFT, padx=5)
         self.filter_var = tk.StringVar(value="Tous")
         filter_options = ["Tous", "Images", "Texte", "PDF", "Vidéos"]
         self.filter_menu = ttk.Combobox(search_frame, textvariable=self.filter_var, values=filter_options, state="readonly")
@@ -92,40 +93,43 @@ class FileManager:
 
     def refresh_list(self):
         """Actualise la liste des fichiers et dossiers."""
-        self.tree.delete(*self.tree.get_children())
+        def run():
+            self.tree.delete(*self.tree.get_children())
 
-        selected_filter = self.search_var.get().lower()
-        file_filter = self.filter_var.get()
+            selected_filter = self.search_var.get().lower()
+            file_filter = self.filter_var.get()
 
-        file_extensions = {
-            "Images": (".png", ".jpg", ".jpeg", ".gif", ".bmp"),
-            "Texte": (".txt", ".md", ".csv"),
-            "PDF": (".pdf",),
-            "Vidéos": (".mp4", ".avi", ".mov", ".mkv"),
-        }
+            file_extensions = {
+                "Images": (".png", ".jpg", ".jpeg", ".gif", ".bmp"),
+                "Texte": (".txt", ".md", ".csv"),
+                "PDF": (".pdf",),
+                "Vidéos": (".mp4", ".avi", ".mov", ".mkv"),
+            }
 
-        try:
-            for item in os.listdir(self.current_path):
-                full_path = os.path.join(self.current_path, item)
-                if os.path.isdir(full_path):
-                    icon = self.folder_icon
-                    if selected_filter in item.lower() or not selected_filter:
-                        self.tree.insert("", tk.END, values=(item, "Dossier", ""), image=icon)
-                else:
-                    ext = os.path.splitext(item)[1].lower()
-                    size = os.path.getsize(full_path)
-                    mod_time = time.ctime(os.path.getmtime(full_path))
-                    icon = self.file_icon
+            try:
+                for item in os.listdir(self.current_path):
+                    full_path = os.path.join(self.current_path, item)
+                    if os.path.isdir(full_path):
+                        icon = self.folder_icon
+                        if selected_filter in item.lower() or not selected_filter:
+                            self.tree.insert("", tk.END, values=(item, "Dossier", ""), image=icon)
+                    else:
+                        ext = os.path.splitext(item)[1].lower()
+                        size = os.path.getsize(full_path)
+                        mod_time = time.ctime(os.path.getmtime(full_path))
+                        icon = self.file_icon
 
-                    if (selected_filter in item.lower() or not selected_filter):
-                        if file_filter == "Tous" or (file_filter in file_extensions and ext in file_extensions[file_filter]):
-                            self.tree.insert("", tk.END, values=(item, "Fichier", f"{size} octets, modifié {mod_time}"), image=icon)
-        except PermissionError:
-            messagebox.showerror("Erreur", "Vous n'avez pas la permission d'accéder à ce répertoire.")
-        except Exception as e:
-            messagebox.showerror("Erreur", f"Une erreur inattendue est survenue : {e}")
+                        if (selected_filter in item.lower() or not selected_filter):
+                            if file_filter == "Tous" or (file_filter in file_extensions and ext in file_extensions[file_filter]):
+                                self.tree.insert("", tk.END, values=(item, "Fichier", f"{size} octets, modifié {mod_time}"), image=icon)
+            except PermissionError:
+                messagebox.showerror("Erreur", "Vous n'avez pas la permission d'accéder à ce répertoire.")
+            except Exception as e:
+                messagebox.showerror("Erreur", f"Une erreur inattendue est survenue : {e}")
 
-        self.update_path_bar()
+            self.update_path_bar()
+
+        threading.Thread(target=run).start()
 
     def update_path_bar(self):
         """Met à jour la barre d'adresse avec le chemin actuel."""
@@ -293,3 +297,5 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = FileManager(root)
     root.mainloop()
+
+
