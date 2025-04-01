@@ -58,56 +58,49 @@ Description : Le renommage de fichiers échouait parfois en raison de conflits d
 
 Solution : Ajoutez une vérification pour voir si le nouveau nom existe déjà avant de renommer
 
-## 7. Problème : Choix des couleurs
-*Description :* Lors de la modification de l'interface utilisateur pour inclure des couleurs, il était nécessaire de choisir des couleurs qui soient à la fois esthétiques et fonctionnelles, tout en garantissant une bonne lisibilité.
+#### 7. Problème : Choix des couleurs
+Description : Lors de la modification de l'interface utilisateur pour inclure des couleurs, il était nécessaire de choisir des couleurs qui soient à la fois esthétiques et fonctionnelles, tout en garantissant une bonne lisibilité.
 
-*Solution :* 
-- Nous avons opté pour une palette de couleurs sombres pour le fond et des couleurs claires pour le texte afin d'améliorer le contraste. Par exemple, le fond du panneau latéral a été défini sur #2c3e50 et le texte sur white.
+Solution : Nous avons opté pour une palette de couleurs sombres pour le fond et des couleurs claires pour le texte afin d'améliorer le contraste. Par exemple, le fond du panneau latéral a été défini sur #2c3e50 et le texte sur white.
   
 sidebar = tk.Frame(main_frame, width=200, bg="#2c3e50", relief=tk.SUNKEN)
 tk.Label(sidebar, text="Navigation", bg="#2c3e50", fg="white", font=("Arial", 12, "bold")).pack(pady=10)
 
 
-## 8. Problème : Application des couleurs à la barre d'outils
-*Description :* Initialement, la barre d'outils n'avait pas de couleur de fond, ce qui la rendait peu visible par rapport au reste de l'interface.
+#### 8. Problème : Application des couleurs à la barre d'outils
+Description : Initialement, la barre d'outils n'avait pas de couleur de fond, ce qui la rendait peu visible par rapport au reste de l'interface.
 
-*Solution :* 
-- Nous avons ajouté une couleur de fond sombre à la barre d'outils pour qu'elle se démarque. La couleur choisie est #1a2a3a, qui s'harmonise avec le reste de l'interface.
+Solution : Nous avons ajouté une couleur de fond sombre à la barre d'outils pour qu'elle se démarque. La couleur choisie est #1a2a3a, qui s'harmonise avec le reste de l'interface.
 
 toolbar = tk.Frame(main_content, bg="#1a2a3a")
 
-## 9. Problème : Couleurs des boutons
-*Description :* Les boutons de l'interface n'avaient pas de couleur de fond, ce qui les rendait moins attrayants et moins visibles.
+#### 9. Problème : Couleurs des boutons
+Description :Les boutons de l'interface n'avaient pas de couleur de fond, ce qui les rendait moins attrayants et moins visibles.
 
-*Solution :* 
-- Nous avons défini une couleur de fond pour les boutons, en utilisant #34495e pour le panneau latéral et #1a2a3a pour la barre d'outils. Cela a permis d'améliorer l'esthétique et la visibilité des boutons.
+Solution : Nous avons défini une couleur de fond pour les boutons, en utilisant #34495e pour le panneau latéral et #1a2a3a pour la barre d'outils. Cela a permis d'améliorer l'esthétique et la visibilité des boutons.
 
 
 tk.Button(sidebar, text="Accueil", command=self.go_home, bg="#34495e", fg="white", relief=tk.FLAT, image=self.home_icon, compound=tk.LEFT).pack(fill=tk.X, padx=10, pady=5)
 
 
-## 11. Problème : Lisibilité du texte
-*Description :* Avec l'ajout de couleurs sombres, il était crucial de s'assurer que le texte reste lisible sur les fonds colorés.
+#### 10. Problème : Lisibilité du texte
+Description : Avec l'ajout de couleurs sombres, il était crucial de s'assurer que le texte reste lisible sur les fonds colorés.
 
-*Solution :* 
-- Nous avons utilisé une couleur de texte claire (white) pour tous les éléments de texte afin d'assurer un bon contraste avec les fonds sombres.
+Solution : Nous avons utilisé une couleur de texte claire (white) pour tous les éléments de texte afin d'assurer un bon contraste avec les fonds sombres.
 
 
 tk.Label(search_frame, text="Rechercher :", bg="#1a2a3a", fg="white").pack(side=tk.LEFT, padx=5)
 
 
-## 12. Problème : Uniformité des couleurs
-*Description :* Il était important de maintenir une uniformité dans l'utilisation des couleurs à travers toute l'application pour une meilleure expérience utilisateur.
+#### 11. Problème : Uniformité des couleurs
+Description : Il était important de maintenir une uniformité dans l'utilisation des couleurs à travers toute l'application pour une meilleure expérience utilisateur.
 
-*Solution :* 
-- Nous avons défini des couleurs spécifiques pour chaque élément de l'interface (panneaux, boutons, texte) et nous nous sommes assurés de les appliquer de manière cohérente dans tout le code.
+Solution :Nous avons défini des couleurs spécifiques pour chaque élément de l'interface (panneaux, boutons, texte) et nous nous sommes assurés de les appliquer de manière cohérente dans tout le code.
 
-
-# Exemple d'application cohérente des couleurs
 tk.Button(toolbar, text="Actualiser", command=self.refresh_list, bg="#1a2a3a", fg="white", relief=tk.FLAT).pack(side=tk.LEFT, padx=5)
 
 
-## Conclusion
+#### Conclusion
 Ces modifications ont permis d'améliorer l'esthétique et la convivialité de l'application. En choisissant des couleurs appropriées et en assurant une bonne lisibilité, nous avons créé une interface utilisateur plus agréable et fonctionnelle.
 
 ### Étape 1 : Prérequis
