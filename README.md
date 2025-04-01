@@ -1,11 +1,11 @@
 # Explorateur de Fichiers en Python avec Tkinter
 
-#**Membres du groupe**
-#ADJABA Ayodélé
-#AGELE Delore
-#DAFIA Jonas
-#HOUANDJA Stéphanie
-#KOUTCHIKA Harahel
+## **Membres du groupe**
+## ADJABA Ayodélé
+## AGELE Delore
+## DAFIA Jonas
+## HOUANDJA Stéphanie
+## KOUTCHIKA Harahel
 
 ## Description
 Ce projet est une application d'explorateur de fichiers développée en Python avec l'interface graphique Tkinter. Il permet de naviguer, gérer et organiser les fichiers et dossiers de votre système de manière simple et intuitive. L'application offre des fonctionnalités telles que la navigation dans les dossiers, la gestion des favoris, des fichiers récents, la recherche et le filtrage des fichiers, ainsi que la gestion des tags.
